@@ -1,6 +1,6 @@
 {
   "name": "@fairfox/standalone-web",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A single, standalone version of Preact, HTM and Preact Signals. No external dependencies, just one single file.",
   "type": "module",
   "main": "dist/standalone-web.js",
@@ -8,8 +8,6 @@
   "types": "dist/standalone-web.d.ts",
   "files": [
     "dist/",
-    "index.ts",
-    "index-compat.ts",
     "LICENSE"
   ],
   "license": "MIT",
@@ -25,9 +23,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexjeffcott/standalone.git"
+    "url": "git+https://github.com/alexjeffcott/standalone-web.git"
   },
-  "homepage": "https://github.com/alexjeffcott/standalone",
+  "homepage": "https://github.com/alexjeffcott/standalone-web",
   "keywords": [
     "preact",
     "signals",
@@ -35,10 +33,8 @@
     "standalone",
     "cdn",
     "jsx",
-    "virtual dom",
     "esm",
-    "no-build",
-    "web-components"
+    "no-build"
   ],
   "devDependencies": {
     "@preact/signals": "^2.2.1",

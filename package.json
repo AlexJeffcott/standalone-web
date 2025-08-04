@@ -1,6 +1,6 @@
 {
   "name": "@fairfox/standalone-web",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A single, standalone version of Preact, HTM and Preact Signals. No external dependencies, just one single file.",
   "type": "module",
   "main": "dist/standalone-web.js",

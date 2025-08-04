@@ -95,8 +95,6 @@ pnpm install preact htm @preact/signals
 
 ## Motivation and goals
 
-My main motivation is to be able to download the entirety of Preact + HTM + Preact Signals offline in a single file.
-
 You can absolutely use separate packages via CDN (and it works fine):
 
 ```html
@@ -117,7 +115,7 @@ or use the combined HTM/Preact export:
 </script>
 ```
 
-However, due to my work limitations (i.e. my internal Preact apps run on restricted corp intranet), having a downloadable, offline version is required, hence the need for a prebundled, no-dependency, single script that I can easily download and use offline.
+However, there are some situations where having either a single import is more convenient, or where one wants to vendor an already optimised build of these core components (eg for a browser extension).
 
 Simply put, the ideal situation is:
 
@@ -130,8 +128,6 @@ Simply put, the ideal situation is:
   import { html, render, signal } from "./standalone.js";
 </script>
 ```
-
-Inspired by the [standalone version of Preact + HTM](https://github.com/developit/htm#installation).
 
 All rights belong to [Preact](https://github.com/preactjs/preact), [HTM](https://github.com/developit/htm) and [Preact Signals](https://github.com/preactjs/signals) owners/maintainers.
 

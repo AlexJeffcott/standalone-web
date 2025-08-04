@@ -1,23 +1,26 @@
 {
   "name": "@fairfox/standalone-web",
-  "version": "0.0.16",
+  "version": "1.0.0",
   "description": "A single, standalone version of Preact, HTM and Preact Signals. No external dependencies, just one single file.",
   "type": "module",
-  "main": "dist/standalone.js",
-  "module": "dist/standalone.js",
-  "types": "dist/standalone.d.ts",
+  "main": "dist/standalone-web.js",
+  "module": "dist/standalone-web.js",
+  "types": "dist/standalone-web.d.ts",
   "files": [
     "dist/",
-    "index.js",
-    "index-compat.js",
+    "index.ts",
+    "index-compat.ts",
     "LICENSE"
   ],
   "license": "MIT",
   "scripts": {
-    "bundle": "bun build index.js --outfile=./dist/standalone.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
-    "bundle:compat": "bun build index-compat.js --outfile=./dist/standalone-react-compat.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
-    "build": "bun run bundle && bun run bundle:compat",
-    "prepublishOnly": "bun run build",
+    "bundle": "bun build index.ts --outfile=./dist/standalone-web.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
+    "bundle:compat": "bun build index-compat.ts --outfile=./dist/standalone-web-react-compat.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
+    "build": "bun run bundle && bun run bundle:compat && bun run build:types",
+    "build:types": "tsc --emitDeclarationOnly --outDir ./dist && mv ./dist/index.d.ts ./dist/standalone-web.d.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "prepublishOnly": "bun run typecheck && bun run build && bun run test",
     "publish:public": "npm publish --access public"
   },
   "repository": {
@@ -39,7 +42,9 @@
   ],
   "devDependencies": {
     "@preact/signals": "^2.2.1",
+    "@types/node": "^22.0.0",
     "htm": "3.1.1",
-    "preact": "^10.27.0"
+    "preact": "^10.27.0",
+    "typescript": "^5.5.0"
   }
 }

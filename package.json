@@ -1,0 +1,45 @@
+{
+  "name": "@fairfox/standalone-web",
+  "version": "0.0.16",
+  "description": "A single, standalone version of Preact, HTM and Preact Signals. No external dependencies, just one single file.",
+  "type": "module",
+  "main": "dist/standalone.js",
+  "module": "dist/standalone.js",
+  "types": "dist/standalone.d.ts",
+  "files": [
+    "dist/",
+    "index.js",
+    "index-compat.js",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "bundle": "bun build index.js --outfile=./dist/standalone.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
+    "bundle:compat": "bun build index-compat.js --outfile=./dist/standalone-react-compat.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
+    "build": "bun run bundle && bun run bundle:compat",
+    "prepublishOnly": "bun run build",
+    "publish:public": "npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexjeffcott/standalone.git"
+  },
+  "homepage": "https://github.com/alexjeffcott/standalone",
+  "keywords": [
+    "preact",
+    "signals",
+    "htm",
+    "standalone",
+    "cdn",
+    "jsx",
+    "virtual dom",
+    "esm",
+    "no-build",
+    "web-components"
+  ],
+  "devDependencies": {
+    "@preact/signals": "^2.2.1",
+    "htm": "3.1.1",
+    "preact": "^10.27.0"
+  }
+}

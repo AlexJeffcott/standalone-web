@@ -21,7 +21,7 @@ Available as a single file for CDN usage or local vendoring.
     render,
     signal,
     Fragment
-  } from "https://esm.sh/@fairfox/standalone-web@1.0.2";
+  } from "https://esm.sh/@fairfox/standalone-web@1.0.3";
 
   const count = signal(0);
 
@@ -46,7 +46,7 @@ Available as a single file for CDN usage or local vendoring.
 When using TypeScript with esm.sh, type definitions are automatically provided:
 
 ```typescript
-import { html, render, signal, useSignal } from "https://esm.sh/@fairfox/standalone-web@1.0.2";
+import { html, render, signal, useSignal } from "https://esm.sh/@fairfox/standalone-web@1.0.3";
 
 const count = signal<number>(0);
 
@@ -76,7 +76,7 @@ For use with React component libraries:
     Fragment,
     memo,
     forwardRef
-  } from "https://esm.sh/@fairfox/standalone-web@1.0.2/dist/standalone-web-react-compat.js";
+  } from "https://esm.sh/@fairfox/standalone-web@1.0.3/dist/standalone-web-react-compat.js";
 
   // Now compatible with React ecosystem libraries
 </script>
@@ -123,7 +123,7 @@ Simply put, the ideal situation is:
 ```html
 <script type="module">
   // Use via esm.sh CDN with automatic TypeScript support
-  import { html, render, signal } from "https://esm.sh/@fairfox/standalone-web@1.0.2";
+  import { html, render, signal } from "https://esm.sh/@fairfox/standalone-web@1.0.3";
   
   // OR download locally for offline use
   import { html, render, signal } from "./standalone-web.js";
@@ -140,12 +140,14 @@ Install and bundle using [Bun](https://bun.sh):
 git clone https://github.com/alexjeffcott/standalone-web.git
 cd standalone
 bun install
-bun run bundle        # Creates dist/standalone-web.js
-bun run bundle:compat # Creates dist/standalone-web-react-compat.js
+bun run bundle        # Creates dist files
 ```
 
 ## Files Generated
 
-- `dist/standalone-web.js` - Main bundle (23.8 KB minified)
-- `dist/standalone-web-react-compat.js` - React compatibility version (30.5 KB minified)  
-- `dist/standalone-web.d.ts` - TypeScript definitions
+- `dist/index.js` - main bundle (23.8 KB minified)
+- `dist/compat.js` - React compatibility version (30.5 KB minified)  
+- `dist/index.d.ts` - TypeScript definitions
+- `dist/index.d.ts.map` - maps for TypeScript definitions
+- `dist/compat.d.ts` - TypeScript definitions for compat version
+- `dist/compat.d.ts.map` - maps for TypeScript definitions for compat version

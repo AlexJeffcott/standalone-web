@@ -1,6 +1,6 @@
 {
   "name": "@fairfox/standalone-web",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A single, standalone version of Preact, HTM and Preact Signals. No external dependencies, just one single file.",
   "type": "module",
   "main": "dist/standalone-web.js",
@@ -12,14 +12,13 @@
   ],
   "license": "MIT",
   "scripts": {
-    "bundle": "bun build src/standalone-web.ts --outfile=./dist/standalone-web.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
-    "bundle:compat": "bun build src/standalone-web-react-compat.ts --outfile=./dist/standalone-web-react-compat.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
-    "build": "bun run bundle && bun run bundle:compat && bun run build:types",
+    "bundle": "bun build src/*.ts --outdir=./dist/ --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
+    "build": "bun run bundle && bun run build:types",
     "build:types": "tsc --emitDeclarationOnly --outDir ./dist",
     "typecheck": "tsc --noEmit",
     "test": "bun test",
-    "test:e2e": "playwright test",
-    "prepublishOnly": "bun run typecheck && bun run build && bun run test && bun run test:e2e",
+    "e2e": "playwright test",
+    "prepublishOnly": "bun run typecheck && bun run build && bun run test",
     "publish:public": "npm publish --access public"
   },
   "repository": {

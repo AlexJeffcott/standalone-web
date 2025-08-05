@@ -16,4 +16,4 @@ import { computed, effect, untracked, useComputed, useSignal, useSignalEffect, s
 import { For, Show, useSignalRef } from "@preact/signals/utils";
 declare const html: (strings: TemplateStringsArray, ...values: any[]) => import("preact").VNode<import("preact").Attributes> | import("preact").VNode<import("preact").Attributes>[];
 export { h, html, render, hydrate, Component, Fragment, createContext, createRef, useEffect, useLayoutEffect, useRef, useMemo, useCallback, useContext, useErrorBoundary, computed, effect, untracked, useComputed, useSignal, useSignalEffect, signal, For, Show, useSignalRef, };
-//# sourceMappingURL=index.d.ts.map
+//# sourceMappingURL=standalone-web.d.ts.map

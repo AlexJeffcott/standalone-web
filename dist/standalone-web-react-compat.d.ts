@@ -17,4 +17,4 @@ import { For, Show, useSignalRef } from "@preact/signals/utils";
 import { createElement, PureComponent, memo, forwardRef, lazy, Suspense, StrictMode, startTransition, useDeferredValue, useTransition, useId, createPortal } from "preact/compat";
 declare const html: (strings: TemplateStringsArray, ...values: any[]) => import("preact").VNode<import("preact").Attributes> | import("preact").VNode<import("preact").Attributes>[];
 export { h, html, render, hydrate, Component, Fragment, createContext, createRef, useEffect, useLayoutEffect, useRef, useMemo, useCallback, useContext, useErrorBoundary, computed, effect, untracked, useComputed, useSignal, useSignalEffect, signal, For, Show, useSignalRef, createElement, PureComponent, memo, forwardRef, lazy, Suspense, StrictMode, startTransition, useDeferredValue, useTransition, useId, createPortal, };
-//# sourceMappingURL=index-compat.d.ts.map
+//# sourceMappingURL=standalone-web-react-compat.d.ts.map

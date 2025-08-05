@@ -20,19 +20,20 @@ Available as a single file for CDN usage or local vendoring.
     html,
     render,
     signal,
-  } from "https://esm.sh/standalone";
+    Fragment
+  } from "https://esm.sh/@fairfox/standalone-web@1.0.2";
 
   const count = signal(0);
 
   function App() {
     return html`
-      <div>
+      <Fragment>
         <h1>Hello World!</h1>
         <button onClick=${() => (count.value += 1)}>
           Increment with signal
         </button>
         <p>Counter: ${count}</p>
-      </div>
+      </Fragment>
     `;
   }
 
@@ -45,7 +46,7 @@ Available as a single file for CDN usage or local vendoring.
 When using TypeScript with esm.sh, type definitions are automatically provided:
 
 ```typescript
-import { html, render, signal, useSignal } from "https://esm.sh/standalone";
+import { html, render, signal, useSignal } from "https://esm.sh/@fairfox/standalone-web@1.0.2";
 
 const count = signal<number>(0);
 
@@ -75,7 +76,7 @@ For use with React component libraries:
     Fragment,
     memo,
     forwardRef
-  } from "https://esm.sh/standalone/dist/standalone-react-compat.js";
+  } from "https://esm.sh/@fairfox/standalone-web@1.0.2/dist/standalone-web-react-compat.js";
 
   // Now compatible with React ecosystem libraries
 </script>
@@ -122,10 +123,10 @@ Simply put, the ideal situation is:
 ```html
 <script type="module">
   // Use via esm.sh CDN with automatic TypeScript support
-  import { html, render, signal } from "https://esm.sh/standalone";
+  import { html, render, signal } from "https://esm.sh/@fairfox/standalone-web@1.0.2";
   
   // OR download locally for offline use
-  import { html, render, signal } from "./standalone.js";
+  import { html, render, signal } from "./standalone-web.js";
 </script>
 ```
 
@@ -136,15 +137,15 @@ All rights belong to [Preact](https://github.com/preactjs/preact), [HTM](https:/
 Install and bundle using [Bun](https://bun.sh):
 
 ```sh
-git clone https://github.com/alexjeffcott/standalone.git
+git clone https://github.com/alexjeffcott/standalone-web.git
 cd standalone
 bun install
-bun run bundle        # Creates dist/standalone.js
-bun run bundle:compat # Creates dist/standalone-react-compat.js
+bun run bundle        # Creates dist/standalone-web.js
+bun run bundle:compat # Creates dist/standalone-web-react-compat.js
 ```
 
 ## Files Generated
 
-- `dist/standalone.js` - Main bundle (23.8 KB minified)
-- `dist/standalone-react-compat.js` - React compatibility version (30.5 KB minified)  
-- `dist/standalone.d.ts` - TypeScript definitions
+- `dist/standalone-web.js` - Main bundle (23.8 KB minified)
+- `dist/standalone-web-react-compat.js` - React compatibility version (30.5 KB minified)  
+- `dist/standalone-web.d.ts` - TypeScript definitions

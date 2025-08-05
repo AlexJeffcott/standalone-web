@@ -17,9 +17,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"]
   },
   "include": [
-    "index.ts",
-    "index-compat.ts",
-    "test/**/*"
+    "src/*.ts"
   ],
   "exclude": [
     "node_modules",

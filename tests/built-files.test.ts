@@ -72,7 +72,7 @@ describe("Built Files", () => {
   });
 
   test("main bundle exports all expected methods", async () => {
-    const mainBundle = await import("../dist/standalone-web.js");
+    const mainBundle = await import("../dist/standalone-web.js") as Record<string, any>;
     
     for (const exportName of expectedMainExports) {
       expect(mainBundle[exportName]).toBeDefined();
@@ -81,7 +81,7 @@ describe("Built Files", () => {
   });
 
   test("compat bundle exports all expected methods", async () => {
-    const compatBundle = await import("../dist/standalone-web-react-compat.js");
+    const compatBundle = await import("../dist/standalone-web-react-compat.js") as Record<string, any>;
     
     for (const exportName of expectedCompatExports) {
       expect(compatBundle[exportName]).toBeDefined();
@@ -90,7 +90,7 @@ describe("Built Files", () => {
   });
 
   test("main bundle has correct types for core functions", async () => {
-    const mainBundle = await import("../dist/standalone-web.js");
+    const mainBundle = await import("../dist/standalone-web.js") as Record<string, any>;
     
     // Test that core functions are functions
     expect(typeof mainBundle.h).toBe("function");
@@ -116,7 +116,7 @@ describe("Built Files", () => {
   });
 
   test("compat bundle has correct types for React compatibility", async () => {
-    const compatBundle = await import("../dist/standalone-web-react-compat.js");
+    const compatBundle = await import("../dist/standalone-web-react-compat.js") as Record<string, any>;
     
     // Test React compat functions
     expect(typeof compatBundle.createElement).toBe("function");
@@ -129,8 +129,8 @@ describe("Built Files", () => {
   });
 
   test("bundles don't export undefined values", async () => {
-    const mainBundle = await import("../dist/standalone-web.js");
-    const compatBundle = await import("../dist/standalone-web-react-compat.js");
+    const mainBundle = await import("../dist/standalone-web.js") as Record<string, any>;
+    const compatBundle = await import("../dist/standalone-web-react-compat.js") as Record<string, any>;
     
     // Check main bundle
     for (const exportName of expectedMainExports) {

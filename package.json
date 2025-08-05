@@ -12,20 +12,21 @@
   ],
   "license": "MIT",
   "scripts": {
-    "bundle": "bun build index.ts --outfile=./dist/standalone-web.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
-    "bundle:compat": "bun build index-compat.ts --outfile=./dist/standalone-web-react-compat.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
+    "bundle": "bun build src/standalone-web.ts --outfile=./dist/standalone-web.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
+    "bundle:compat": "bun build src/standalone-web-react-compat.ts --outfile=./dist/standalone-web-react-compat.js --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
     "build": "bun run bundle && bun run bundle:compat && bun run build:types",
-    "build:types": "tsc --emitDeclarationOnly --outDir ./dist && mv ./dist/index.d.ts ./dist/standalone-web.d.ts",
+    "build:types": "tsc --emitDeclarationOnly --outDir ./dist",
     "typecheck": "tsc --noEmit",
     "test": "bun test",
-    "prepublishOnly": "bun run typecheck && bun run build && bun run test",
+    "test:e2e": "playwright test",
+    "prepublishOnly": "bun run typecheck && bun run build && bun run test && bun run test:e2e",
     "publish:public": "npm publish --access public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexjeffcott/standalone-web.git"
   },
-  "homepage": "https://github.com/alexjeffcott/standalone-web",
+  "homepage": "https://github.com/alexjeffcott/standalone-web/README.md",
   "keywords": [
     "preact",
     "signals",
@@ -37,7 +38,9 @@
     "no-build"
   ],
   "devDependencies": {
+    "@playwright/test": "^1.54.2",
     "@preact/signals": "^2.2.1",
+    "@types/bun": "^1.2.19",
     "@types/node": "^22.0.0",
     "htm": "3.1.1",
     "preact": "^10.27.0",

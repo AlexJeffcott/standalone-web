@@ -6,7 +6,7 @@ import { resolve } from "path";
 const expectedMainExports = [
   // Core Preact
   "h",
-  "html", 
+  "html",
   "render",
   "hydrate",
   "Component",
@@ -15,7 +15,7 @@ const expectedMainExports = [
   "createRef",
   // Hooks
   "useEffect",
-  "useLayoutEffect", 
+  "useLayoutEffect",
   "useRef",
   "useMemo",
   "useCallback",
@@ -56,10 +56,11 @@ const expectedCompatExports = [
 describe("Built Files", () => {
   beforeAll(() => {
     // Ensure files exist before testing
-    const mainFile = resolve("./dist/standalone-web.js");
-    const compatFile = resolve("./dist/standalone-web-react-compat.js");
-    const typesFile = resolve("./dist/standalone-web.d.ts");
-    
+    const mainFile = resolve("./dist/index.js");
+    const compatFile = resolve("./dist/compat.js");
+    const typesFile = resolve("./dist/index.d.ts");
+    const compatTypesFile = resolve("./dist/compat.d.ts");
+
     if (!existsSync(mainFile)) {
       throw new Error("Main bundle file does not exist. Run 'bun run build' first.");
     }
@@ -69,11 +70,15 @@ describe("Built Files", () => {
     if (!existsSync(typesFile)) {
       throw new Error("Types file does not exist. Run 'bun run build' first.");
     }
+    if (!existsSync(compatTypesFile)) {
+      throw new Error("Compat Types file does not exist. Run 'bun run build' first.");
+    }
+
   });
 
   test("main bundle exports all expected methods", async () => {
-    const mainBundle = await import("../dist/standalone-web.js") as Record<string, any>;
-    
+    const mainBundle = await import("../dist/index.js") as Record<string, any>;
+
     for (const exportName of expectedMainExports) {
       expect(mainBundle[exportName]).toBeDefined();
       expect(typeof mainBundle[exportName]).not.toBe("undefined");
@@ -81,8 +86,8 @@ describe("Built Files", () => {
   });
 
   test("compat bundle exports all expected methods", async () => {
-    const compatBundle = await import("../dist/standalone-web-react-compat.js") as Record<string, any>;
-    
+    const compatBundle = await import("../dist/compat.js") as Record<string, any>;
+
     for (const exportName of expectedCompatExports) {
       expect(compatBundle[exportName]).toBeDefined();
       expect(typeof compatBundle[exportName]).not.toBe("undefined");
@@ -90,8 +95,8 @@ describe("Built Files", () => {
   });
 
   test("main bundle has correct types for core functions", async () => {
-    const mainBundle = await import("../dist/standalone-web.js") as Record<string, any>;
-    
+    const mainBundle = await import("../dist/index.js") as Record<string, any>;
+
     // Test that core functions are functions
     expect(typeof mainBundle.h).toBe("function");
     expect(typeof mainBundle.html).toBe("function");
@@ -100,13 +105,13 @@ describe("Built Files", () => {
     expect(typeof mainBundle.Component).toBe("function");
     expect(typeof mainBundle.createContext).toBe("function");
     expect(typeof mainBundle.createRef).toBe("function");
-    
+
     // Test hooks are functions
     expect(typeof mainBundle.useEffect).toBe("function");
     expect(typeof mainBundle.useRef).toBe("function");
     expect(typeof mainBundle.useMemo).toBe("function");
     expect(typeof mainBundle.useCallback).toBe("function");
-    
+
     // Test signals are functions
     expect(typeof mainBundle.signal).toBe("function");
     expect(typeof mainBundle.computed).toBe("function");
@@ -116,8 +121,8 @@ describe("Built Files", () => {
   });
 
   test("compat bundle has correct types for React compatibility", async () => {
-    const compatBundle = await import("../dist/standalone-web-react-compat.js") as Record<string, any>;
-    
+    const compatBundle = await import("../dist/compat.js") as Record<string, any>;
+
     // Test React compat functions
     expect(typeof compatBundle.createElement).toBe("function");
     expect(typeof compatBundle.memo).toBe("function");
@@ -129,23 +134,17 @@ describe("Built Files", () => {
   });
 
   test("bundles don't export undefined values", async () => {
-    const mainBundle = await import("../dist/standalone-web.js") as Record<string, any>;
-    const compatBundle = await import("../dist/standalone-web-react-compat.js") as Record<string, any>;
-    
+    const mainBundle = await import("../dist/index.js") as Record<string, any>;
+    const compatBundle = await import("../dist/compat.js") as Record<string, any>;
+
     // Check main bundle
     for (const exportName of expectedMainExports) {
       expect(mainBundle[exportName]).not.toBe(undefined);
     }
-    
+
     // Check compat bundle  
     for (const exportName of expectedCompatExports) {
       expect(compatBundle[exportName]).not.toBe(undefined);
     }
-  });
-
-  test("files exist in expected locations", () => {
-    expect(existsSync("./dist/standalone-web.js")).toBe(true);
-    expect(existsSync("./dist/standalone-web-react-compat.js")).toBe(true);
-    expect(existsSync("./dist/standalone-web.d.ts")).toBe(true);
   });
 });

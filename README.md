@@ -21,7 +21,7 @@ Available as a single file for CDN usage or local vendoring.
     render,
     signal,
     Fragment
-  } from "https://esm.sh/@fairfox/standalone-web@1.0.3";
+  } from "https://esm.sh/@fairfox/standalone-web@1.0.4";
 
   const count = signal(0);
 
@@ -46,7 +46,7 @@ Available as a single file for CDN usage or local vendoring.
 When using TypeScript with esm.sh, type definitions are automatically provided:
 
 ```typescript
-import { html, render, signal, useSignal } from "https://esm.sh/@fairfox/standalone-web@1.0.3";
+import { html, render, signal, useSignal } from "https://esm.sh/@fairfox/standalone-web@1.0.4";
 
 const count = signal<number>(0);
 
@@ -76,7 +76,7 @@ For use with React component libraries:
     Fragment,
     memo,
     forwardRef
-  } from "https://esm.sh/@fairfox/standalone-web@1.0.3/dist/standalone-web-react-compat.js";
+  } from "https://esm.sh/@fairfox/standalone-web@1.0.4/dist/standalone-web-react-compat.js";
 
   // Now compatible with React ecosystem libraries
 </script>
@@ -123,7 +123,7 @@ Simply put, the ideal situation is:
 ```html
 <script type="module">
   // Use via esm.sh CDN with automatic TypeScript support
-  import { html, render, signal } from "https://esm.sh/@fairfox/standalone-web@1.0.3";
+  import { html, render, signal } from "https://esm.sh/@fairfox/standalone-web@1.0.4";
   
   // OR download locally for offline use
   import { html, render, signal } from "./standalone-web.js";

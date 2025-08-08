@@ -3,9 +3,19 @@
   "version": "1.0.4",
   "description": "A single, standalone version of Preact, HTM and Preact Signals. No external dependencies, just one single file.",
   "type": "module",
-  "main": "dist/standalone-web.js",
-  "module": "dist/standalone-web.js",
-  "types": "dist/standalone-web.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./compat": {
+      "import": "./dist/compat.js",
+      "types": "./dist/compat.d.ts"
+    }
+  },
   "files": [
     "dist/",
     "LICENSE"
@@ -14,18 +24,25 @@
   "scripts": {
     "bundle": "bun build src/*.ts --outdir=./dist/ --format=esm --target=browser --minify --define:'process.env.NODE_ENV=\"production\"' --define:'__DEV__=false'",
     "build": "bun run bundle && bun run build:types",
-    "build:types": "tsc --emitDeclarationOnly --outDir ./dist",
-    "typecheck": "tsc --noEmit",
+    "build:types": "bunx tsc --emitDeclarationOnly --outDir ./dist",
+    "typecheck": "bunx tsc --noEmit",
     "test": "bun test",
     "e2e": "playwright test",
-    "prepublishOnly": "bun run typecheck && bun run build && bun run test",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "all": "bun run typecheck && bun run format:fix && bun run lint:fix && bun run check:fix",
+    "prepublishOnly": "bun run all && bun run build && bun run test",
     "publish:public": "npm publish --access public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexjeffcott/standalone-web.git"
   },
-  "homepage": "https://github.com/alexjeffcott/standalone-web/README.md",
+  "homepage": "https://github.com/alexjeffcott/standalone-web",
   "keywords": [
     "preact",
     "signals",
